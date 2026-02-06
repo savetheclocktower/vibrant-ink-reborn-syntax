@@ -1,0 +1,12 @@
+@import '../utilities.less';
+@import '../syntax-variables.less';
+
+.sx('text.html', {
+
+  // I prefer for the punctuation around and inside an HTML tag to be the same
+  // color as the tag itself. That means the angle brackets and the `=`s inside
+  // attribute/value pairs.
+  .sx('punctuation.definition.tag', { color: @red; });
+  .sx('punctuation.separator.key-value', { color: @red });
+
+});

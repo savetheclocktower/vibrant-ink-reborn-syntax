@@ -1,0 +1,31 @@
+@import '../utilities.less';
+@import '../syntax-variables.less';
+
+// JAVASCRIPT
+// ==========
+
+.sx('source.js', {
+
+  // `async` is just an annotation like `static` or `private`, but it's an
+  // important one. So let's make it stand out the way `await` does.
+  .sx('storage.modifier.async', { color: @red; });
+
+  // Likewise, `*` is a very subtle annotation for a generator function, so we
+  // should make it stand out a bit more.
+  .sx('storage.modifier.generator', { color: @red; });
+
+  // `this` and `super` are special variables, so let's make them a different
+  // color.
+  .sx('variable.language', { color: @foam-green; });
+
+  // JSDoc documentation blocks can have inline tags with special meaning.
+  // Let's give them an “embedded” treatment.
+  .s('meta.inline-tag.jsdoc', {
+    background-color: fade(@purple, 20%);
+  });
+
+  .s('meta.attribute-namespace', {
+    font-style: italic;
+  });
+
+});

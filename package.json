@@ -1,0 +1,16 @@
+{
+  "name": "vibrant-ink-reborn-syntax",
+  "theme": "syntax",
+  "version": "0.1.0",
+  "main": "lib/main",
+  "description": "A Pulsar theme based on vibrant-ink-redux",
+  "keywords": [
+    "syntax",
+    "theme"
+  ],
+  "repository": "https://github.com/savetheclocktower/vibrant-ink-reborn-syntax",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}

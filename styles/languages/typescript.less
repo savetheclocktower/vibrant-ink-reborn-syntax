@@ -1,0 +1,27 @@
+@import '../utilities.less';
+@import '../syntax-variables.less';
+
+// TYPESCRIPT
+// ==========
+
+.sx('source.ts, source.tsx', {
+
+  .sx('storage.modifier.async', { color: @red; });
+
+  .sx('storage.modifier.generator', { color: @red; });
+
+  .sx('variable.language', { color: @foam-green; });
+
+  .s('punctuation.definition.parameters.bracket.angle', {
+    color: @red;
+  });
+
+  .s('meta.inline-tag.jsdoc', {
+    background-color: fade(@purple, 20%);
+  });
+
+  .s('meta.attribute-namespace', {
+    font-style: italic;
+  });
+
+});

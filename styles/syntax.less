@@ -1,0 +1,178 @@
+
+@import 'utilities.less';
+@import 'syntax-variables.less';
+
+// MISC
+// ====
+
+atom-text-editor {
+  .placeholder-text {
+    color: @gray;
+  }
+}
+
+// SCOPES
+// ======
+
+.sx('comment', {
+  color: @syntax-color-comment;
+
+  .sx('storage.type.class.todo', {
+    color: @white;
+    .mixin-faint-underline(@white);
+  });
+});
+
+.sx('comment.block.documentation', { color: @purple; });
+
+.sx('constant', { color: @syntax-color-constant; });
+.sx('constant.numeric', { color: @slate; });
+
+.sx('entity', { color: @syntax-color-function; });
+.sx('entity.name.tag', { color: @red; });
+.sx('entity.name.type.class', {
+  text-decoration: underline;
+  text-decoration-color: fade(@syntax-color-function, 50%);
+});
+
+// .sx('entity.other.attribute-name', { color: @orange; });
+
+// INVALID
+// =======
+
+.sx('invalid.illegal', { .mixin-inverted(@red); });
+.sx('invalid.deprecated', {
+  color: @pink;
+  font-style: italic;
+});
+
+// KEYWORD
+// =======
+
+.sx('keyword', { color: @syntax-color-keyword; });
+.sx('keyword.other', { color: @yellow; });
+
+
+// MARKUP
+// ======
+
+.sx('markup.heading', { color: @orange; });
+.sx('markup.quote', {
+  color: @light-gray;
+  .sx('meta.embedded.line', { color: @very-light-gray; });
+});
+.sx('markup.bold', {
+  font-weight: 800;
+  background-color: fade(@yellow, 10%);
+});
+.sx('markup.italic', {
+  font-style: italic;
+  background-color: fade(@blue, 10%);
+});
+.sx('markup.underline', { text-decoration: underline; });
+
+.sx('meta.link', { color: @orange; });
+
+.sx('markup.list', {
+  .sx('punctuation.definition.list-item', {
+    color: @blue;
+  });
+});
+
+.sx('markup.horizontal-rule', { color: @light-gray; });
+
+.sx('markup.strike', { color: @light-gray; });
+
+.sx('meta', {});
+
+.sx('meta.embedded.line', {
+  .mixin-embedded-line();
+});
+
+.sx('meta.embedded.block', {
+  .mixin-embedded-block();
+});
+
+// PUNCTUATION
+// ===========
+
+.sx('punctuation', {});
+
+// Punctuation inside string interpolations.
+.sx('punctuation.section.embedded', { color: @red; });
+
+// HTML/XML/JSX/TSX tags.
+.sx('meta.tag', {
+  .sx('punctuation.definition.tag', { color: @red; });
+  .sx('punctuation.separator.key-value', { color: @red });
+});
+
+// STRING
+// ======
+
+.sx('string', { color: @syntax-color-string });
+
+.sx('string.regexp', {
+    color: @aqua;
+
+  // .s('punctuation.definition.string', { color: inherit; });
+});
+
+
+// STORAGE
+// =======
+
+
+.sx('storage', {
+  color: @syntax-text-color;
+  font-style: italic;
+});
+
+.s('storage', { font-style: italic; });
+
+
+// SUPPORT
+// =======
+
+.sx('support', {
+  color: @bluish-white;
+
+  .s-and('builtin.function', {
+    .mixin-faint-underline(@orange);
+  });
+
+  .s-and('builtin.object', {
+    .mixin-faint-underline(@bluish-white);
+  });
+
+  .s-and('builtin.class', {
+    .mixin-faint-underline(@white);
+  });
+
+  &.syntax--function:not(.syntax--other) {
+    .mixin-faint-underline(@orange);
+  }
+
+});
+
+.sx('support.type.property-name', { color: @brown; });
+
+.sx('support.other', {
+  color: @white;
+
+  .s-and('function', {
+    .mixin-faint-underline(@orange);
+  });
+
+  .s-and('class', {
+    .mixin-faint-underline(@white);
+  });
+
+});
+
+
+.sx('variable', { color: @syntax-color-variable; });
+
+.sx('variable.parameter', {
+  .mixin-parameter();
+});

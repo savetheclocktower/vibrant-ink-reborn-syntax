@@ -1,0 +1,29 @@
+
+// `linter-default-ui` uses constants imported from 'ui-variables' to determine
+// the colors to use. That works fine in UI contexts (like the tree view) but
+// not in editor contexts (like the gutter and text annotations).
+
+@linter-error-color: hsla(0, 75%, 65%, 0.9);
+@linter-warn-color: hsla(35, 75%, 60%, 0.9);
+@linter-info-color: hsla(200, 90%, 40%, 0.9);
+
+// Once again, actual borders will shift the text upward. Our `box-shadow`
+// trick doesn't work if we want to draw a line under just one side. So instead
+// we'll make a gradient (of sorts) and use it as a backround image.
+.linter-annotation(@color) {
+  background-image: linear-gradient(to top, @color 0px, @color 1px, transparent 100%) !important;
+}
+
+span.linter-gutter {
+  // The small mark in the gutter.
+  &.linter-gutter-error   { color: @linter-error-color !important; }
+  &.linter-gutter-warning { color: @linter-warn-color  !important; }
+  &.linter-gutter-info    { color: @linter-info-color  !important; }
+}
+
+// The decorations that annotate regions of code.
+.linter-highlight {
+  &.linter-error   { .linter-annotation(@linter-error-color); }
+  &.linter-warning { .linter-annotation(@linter-warn-color);  }
+  &.linter-info    { .linter-annotation(@linter-info-color);  }
+}

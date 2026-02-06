@@ -1,0 +1,110 @@
+
+// Make targeting scopes less tedious. Allows you to write
+//
+//    .s('entity.name.function', { color: @red; });
+//
+// instead of
+//
+//    .syntax--entity.syntax--name.syntax--function { color: red };
+//
+// As with what's typically seen in Atom/Pulsar syntax themes, these scope
+// segments will match in any order. In this example, something scoped
+// `entity.function.name` would also be targeted, whether this was intended or
+// not.
+//
+.s(@scope, @ruleset) {
+  @plugin "utilities.js";
+  @selector: makeScopeSelector(@scope);
+
+  @{selector} {
+    @ruleset();
+  }
+}
+
+// Like .s, but adds further criteria to the original scope. Allows you to write
+//
+//    .s('entity', {
+//      .s-and('function', { color: @red; });
+//    });
+//
+// instead of
+//
+//    .syntax--entity {
+//      &.syntax--function { color: @red; }
+//    }
+.s-and(@scope, @ruleset) {
+  @plugin "utilities.js";
+  @selector: makeScopeSelector(@scope);
+
+  &@{selector} {
+    @ruleset();
+  }
+}
+
+// Allows you to write
+//
+//    .sx('entity.name.function', { color: @red; });
+//
+// instead of
+//
+//    *[class^='syntax--entity syntax--name syntax--function '],
+//    *[class='syntax--entity syntax--name syntax--function'] {
+//      color: red
+//    };
+//
+// Unlike the above, scope matching is _exact_. Our example will match anything
+// scoped `entity.name.function`, including anything that has additional scope
+// segments after those three. Will not match `entity.function`, `entity.name`,
+// or `entity.function.name`.
+//
+.sx(@scope, @ruleset) {
+  @plugin "utilities.js";
+  @selector: makeExactScopeSelector(@scope, @ruleset);
+
+  @{selector} {
+    @ruleset();
+  }
+}
+
+
+// MIXINS
+// ======
+
+// If you try to apply a `border` to an editor element, you'll shift content by
+// one or two pixels and it'll look weird.
+//
+// You can apply `outline` instead… and then your outline will ignore
+// `border-radius`.
+//
+// Instead, you can apply a stroke via `box-shadow` and avoid both these
+// pitfalls.
+.mixin-safe-border(@color, @width: 1px) {
+  box-shadow: 0px 0px 0px @width @color inset
+}
+
+.mixin-embedded-line() {
+  .mixin-safe-border(rgba(255, 255, 255, 0.08));
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  color: @syntax-text-color;
+}
+
+.mixin-embedded-block() {
+  // Doesn't do any background-color modification, but still resets the base
+  // text color instead of inheriting the color of whatever embedded it.
+  color: @syntax-text-color;
+}
+
+.mixin-parameter() {
+  font-style: italic;
+}
+
+.mixin-faint-underline(@color) {
+  text-decoration: underline;
+  text-decoration-color: fade(@color, 30%);
+}
+
+.mixin-inverted(@color) {
+  background: @color !important;
+  color: @syntax-background-color !important;
+}

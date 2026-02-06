@@ -1,0 +1,19 @@
+@import "ui-variables";
+
+@editor-comment-highlight: fade(@ui-site-color-1, 10%);
+@editor-comment-highlight-cursor: fade(@ui-site-color-1, 18%);
+atom-text-editor .line.github-editorCommentHighlight {
+  background-color: @editor-comment-highlight;
+
+  &.cursor-line {
+    // TODO: Ideally, this should somehow compose with the user's regular
+    // highlight color for the active cursor line, if one exists. No idea how
+    // to do that, though, since the same `background-color` is being
+    // overridden. Do some research!
+    //
+    // (Actually, this sounds like a great argument for turning these comment
+    // line annotations into block decorations rather than adding a class name
+    // to the line directly!)
+    background-color: @editor-comment-highlight-cursor;
+  }
+}
